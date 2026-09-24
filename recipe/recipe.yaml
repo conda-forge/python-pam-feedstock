@@ -2,15 +2,15 @@ schema_version: 1
 
 context:
   name: python-pam
-  version: 2.0.2
+  version: "2.1.0"
 
 package:
   name: ${{ name|lower }}
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/python-pam-${{ version }}.tar.gz
-  sha256: 97235235ba9b82dbae8068d1099508455949b275f77273ca22fdbd8b1fb5d950
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 04598b0fba9e3fa290f27e4f8d1762a9d61b75f1e38b53e9d8d861af53eb0d2a
 
 build:
   number: 0
@@ -20,12 +20,10 @@ build:
 requirements:
   host:
     - python ${{ python_min }}.*
-    - setuptools >=44
-    - wheel >=0.30.0
+    - poetry-core >=2.0
     - pip
   run:
     - python >=${{ python_min }}
-    - six
 
 tests:
   - python:
